@@ -23,7 +23,7 @@ class Scraper
     doc = Nokogiri::HTML(open(index_url))
     student = Hash.new
 
-    social_media = doc.css("div.social-icon-container a").each do |media|
+    doc.css("div.social-icon-container a").each do |media|
       url = student.attribute("href")
       students_hash[:twitter_url] = url if url.include?("twitter")
 

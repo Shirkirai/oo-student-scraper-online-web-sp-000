@@ -20,18 +20,28 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    students_hash = {}
     doc = Nokogiri::HTML(open(profile_url))
-    doc.css("div.social-icon-container a").each do |media|
-      url = media.attribute("href")
-      students_hash[:twitter] = url if url.include?("twitter")
-      students_hash[:linkedin] = url if url.include?("linkedin")
-      students_hash[:github] = url if url.include?("github")
-      students_hash[:blog] = url if doc.css("img").attribute("src").text.include?("rss")
-    end
-      students_hash[:profile_quote] = doc.css("div.profile-quote").text
-      students_hash[:bio] = doc.css("div.bio-content.content-holder div.description-holder p").text
+  end	    student = Hash.new
 
-    students_hash
+
+    social_icons = doc.css("div.social-icon-container a").collect {|x| x.attribute("href").value}
+    social_icons.each do |social_icon|
+      if social_icon.include?("linkedin")
+        student[:linkedin] = social_icon
+      elsif social_icon.include?("github")
+        student[:github] = social_icon
+      elsif social_icon.include?("twitter")
+        student[:twitter] = social_icon
+      else
+        student[:blog] = social_icon
+      end
+    end
+    # if doc.css("div.bio-content.content-holder div.description-holder p")
+      student[:bio] = doc.css("div.bio-content.content-holder div.description-holder p").text
+    # end
+    # if doc.css(".profile-quote")
+      student[:profile_quote] = doc.css(".profile-quote").text
+    # end
+    student
   end
 end

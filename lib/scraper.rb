@@ -30,7 +30,7 @@ class Scraper
       students_hash[:blog] = url if doc.css("img").attribute("src").text.include?("rss")
     end
       students_hash[:profile_quote] = doc.css("div.profile-quote").text
-      students_hash[:bio] = doc.css("div.bio-content.content-holder p").text
+      students_hash[:bio] = doc.css("div.bio-content.content-holder div.description-holder p").text
 
     students_hash
   end

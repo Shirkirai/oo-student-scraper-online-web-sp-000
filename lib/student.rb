@@ -30,8 +30,6 @@ class Student
     self.send("bio=", attributes_hash[:bio])
   end
 
-  end
-
   def self.all
 
   end

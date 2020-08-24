@@ -20,6 +20,7 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
+    students_hash = {}
     doc = Nokogiri::HTML(open(index_url))
     doc.css("div.social-icon-container a").each do |media|
       url = student.attribute("href")

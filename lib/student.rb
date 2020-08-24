@@ -8,7 +8,7 @@ class Student
 
   def initialize(student_hash)
     binding.pry
-    self.send("name=", student_hash[:name])
+    #self.send("name=", student_hash[:name])
 
   end
 

@@ -29,8 +29,9 @@ class Scraper
       profile_url = "#{student.attr("href")}"
       students << {name: name, location: location, profile_url: profile_url}
     end
+    students
   end
-  students
+
 
 
   def self.scrape_profile_page(profile_url)

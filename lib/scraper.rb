@@ -29,7 +29,7 @@ class Scraper
         profile_url = "#{student.attr("href")}"
         students << {name: name, location: location, profile_url: profile_url}
       end
-    
+
     end
       students
   end

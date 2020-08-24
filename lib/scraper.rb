@@ -31,7 +31,7 @@ class Scraper
       end
 
     end
-      students
+    students
   end
 
 
